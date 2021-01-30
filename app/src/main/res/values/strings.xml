@@ -1,0 +1,20 @@
+<resources>
+    <!-- MainActivity -->
+    <string name="app_name">Actividades PEC3</string>
+    <string name="edit_nombre">Nombre Completo</string>
+    <string name="edit_fecha">Fecha de nacimiento</string>
+    <string name="edit_telefono">Telefono</string>
+    <string name="edit_email">Correo</string>
+    <string name="edit_descripcion">Descripción Contacto</string>
+    <string name="button_siguiente">Siguiente</string>
+    <string name="imcompleto">Tienes que rellenar todos los campos</string>
+
+    <!-- ConfirmarDatosActivity -->
+    <string name="title_ConfirmarDatosActivity">Confirmar Datos</string>
+    <string name="text_nombre">Nombre:</string>
+    <string name="text_fecha">Fecha Nacimiento: </string>
+    <string name="text_telefono">Tel: </string>
+    <string name="text_email">"Correo: "</string>
+    <string name="text_descripcion">Descripción: </string>
+    <string name="button_editarDatos">Editar Datos</string>
+</resources>
