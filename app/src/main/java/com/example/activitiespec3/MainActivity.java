@@ -10,42 +10,18 @@ import android.widget.*;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    EditText editFechaNacimiento,editNombre,editPhone,editEmail,editDescripcion;
-    Button buttonSiguiente;
-    Calendar c;
-    DatePickerDialog dpd;
-    int cont = 0;
+    private EditText editFechaNacimiento,editNombre,editPhone,editEmail,editDescripcion;
+    private Button buttonSiguiente;
+
+    private Calendar c;
+    private DatePickerDialog dpd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(cont == 0){
-            iniciarPantalla();
-
-            editFechaNacimiento.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                        //tratamos la fecha de nacimiento
-                        crearfechaNacimiento();
-                }
-            });
-            cont++;
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(cont == 1){
-            iniciarPantalla();
-            editFechaNacimiento.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    modificarfechaNacimiento();
-                }
-            });
-        }
+        iniciarPantalla();
     }
 
     private void iniciarPantalla(){
@@ -55,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         editDescripcion = (EditText) findViewById(R.id.editDescripcion);
 
         editFechaNacimiento = (EditText) findViewById(R.id.editFechaNacimiento);
+        editFechaNacimiento.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //tratamos la fecha de nacimiento
+                crearfechaNacimiento();
+            }
+        });
 
         buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
         buttonSiguiente.setOnClickListener(new View.OnClickListener(){
@@ -85,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("email", email);
             intent.putExtra("descricion", descricion);
             intent.putExtra("fechaNacimiento", fechaNacimiento);
+           // startActivityForResult(new Intent (getApplicationContext(),intent,REQUES_CODE));
             startActivity(intent);
-
         }else{
             //mostramos un mensaje
             Toast.makeText(MainActivity.this, R.string.imcompleto, Toast.LENGTH_SHORT).show();
@@ -100,16 +83,6 @@ public class MainActivity extends AppCompatActivity {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         //abrimos un dilog con el calendario y la fecha actual del dispositivo
-        mostrarDatePickerDilog(year,month,day);
-    }
-    public void modificarfechaNacimiento(){
-        //recogemos la fecha a modificar
-        String fechaModificar = editFechaNacimiento.getText().toString();
-        String[] parts = fechaModificar.split("/");
-        int year = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int day = Integer.parseInt(parts[2]);
-        //abrimos un dilog con el calendario y la fecha a modificar
         mostrarDatePickerDilog(year,month,day);
     }
     public void mostrarDatePickerDilog( int year, int month, int day){

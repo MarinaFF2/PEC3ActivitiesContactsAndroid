@@ -2,6 +2,7 @@ package com.example.activitiespec3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ConfirmarDatosActivity extends AppCompatActivity {
-    public String nombre = null, phone = null, email = null, descripcion = null, fechaNacimiento = null;
-    TextView textNombre, textFechaNacimiento, textPhone, textEmail, textDescripcion;
-    Button buttonEditarDatos;
+    private String nombre = null, phone = null, email = null, descripcion = null, fechaNacimiento = null;
+    private TextView textNombre, textFechaNacimiento, textPhone, textEmail, textDescripcion;
+    private Button buttonEditarDatos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +51,9 @@ public class ConfirmarDatosActivity extends AppCompatActivity {
         });
     }
     private void editarDatos() {
-            Intent intent = new Intent(this,MainActivity.class);
-            //metemos la informacion que queremos pasa a la otra pagina
-            //atraves de una constante
-            intent.putExtra("nombre", nombre);
-            intent.putExtra("phone", phone);
-            intent.putExtra("email", email);
-            intent.putExtra("descricion", descripcion);
-            intent.putExtra("fechaNacimiento", fechaNacimiento);
-            startActivityForResult(intent,1);
-            //startActivity(intent);
-
+        //Regresamos a la activity anterior
+        //como no ha sido destruida, se puede volver hacia atrás
+        //y seguir teniendo los datos que habiamos introducido con anterioridad
+        finish();
     }
 }
